@@ -17,11 +17,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
+import ru.stas.movieapp.MainViewModel
 import ru.stas.movieapp.navigation.Screens
 import ru.stas.movieapp.ui.theme.MovieAppTheme
 
 @Composable
-fun SplashScreen(navController: NavController){
+fun SplashScreen(navController: NavController,viewModel: MainViewModel){
     var startAnimation by remember {
         mutableStateOf(false)
     }
@@ -31,6 +32,7 @@ fun SplashScreen(navController: NavController){
     )
     LaunchedEffect(key1 = true){
         startAnimation = true
+        viewModel.getAllMovies()
         delay(4000)
         navController.navigate(Screens.Main.route)
     }
